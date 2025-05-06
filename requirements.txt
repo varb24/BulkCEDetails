@@ -1,0 +1,24 @@
+# NOTICE: this extra index url is here for CI/CD & Docker. For your IDE, it MUST be defined in ~/.pip/pip.conf
+--extra-index-url https://pypi.lcgops.com/simple/
+lcg-common~=1.21.0
+
+openai
+flask-session
+Flask
+Flask-SQLAlchemy~=3.1.1
+reportlab~=4.2.0
+google-api-python-client
+flask-cors
+Flask-Testing
+Flask-Inputs
+jsonschema
+pymongo
+ruff
+pytest
+pytest_mock
+neo4j~=5.24.0
+numpy
+pandas
+textblob
+langchain
+langchain-community

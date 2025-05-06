@@ -1,0 +1,13 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./messages.log:/app/messages.log
+    env_file:
+      - .env
+
+    command: ["gunicorn", "--timeout=1200", "--bind", "0.0.0.0:80", "GradCreditAPI.server:app"]
