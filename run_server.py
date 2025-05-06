@@ -1,4 +1,4 @@
-from GradCreditAPI.server import app, db
+from BulkCEDetailsAPI.server import app, db
 
 with app.app_context():
     db.create_all()

@@ -11,7 +11,7 @@ def client(monkeypatch, neo4j_client_fixture):
     load_env(env_path, required=True)
 
     # Import 'app' after monkeypatching
-    from GradCreditAPI.server import app
+    from BulkCEDetailsAPI.server import app
 
     with app.test_client() as client:
         yield client

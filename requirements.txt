@@ -1,6 +1,6 @@
 # NOTICE: this extra index url is here for CI/CD & Docker. For your IDE, it MUST be defined in ~/.pip/pip.conf
 --extra-index-url https://pypi.lcgops.com/simple/
-lcg-common~=1.21.0
+lcg-common~=1.25.0
 
 openai
 flask-session

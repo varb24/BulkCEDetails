@@ -7,7 +7,7 @@ from lcg_common import config_var, get_mongodb_client, load_env, setup_logging
 from lcg_common.webservice import AuthManager, HALOFlask
 
 # Import blueprints
-from GradCreditAPI.routes import (  # noqa: E402
+from BulkCEDetailsAPI.routes import (  # noqa: E402
     root,
     health
 )
