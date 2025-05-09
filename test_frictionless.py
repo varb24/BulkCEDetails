@@ -200,7 +200,7 @@ if __name__ == "__main__":
     print(all_rows)
     #print(error_info)
     print(error_info.keys())
-    # list all rows that do not contain error.
+    # list all rows that do not contain error. Each row is a dictionary.
     valid_rows = [x for idx, x in enumerate(all_rows['sample_testing']) if idx not in error_info.keys() and idx != 0]
     print(valid_rows)
 
