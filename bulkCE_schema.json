@@ -1,0 +1,52 @@
+{
+  "$schema": "https://frictionlessdata.io/schemas/table-schema.json",
+  "fields": [
+    {
+      "name": "Approval Organization",
+      "type": "string",
+      "constraints": { "required": true }
+    },
+    {
+      "name": "CE Broker State",
+      "type": "string"
+    },
+    {
+      "name": "CE Hours/Contact Hours",
+      "type": "number",
+      "constraints": {
+        "required": true,
+        "minimum": 0
+      }
+    },
+    {
+      "name": "Offering ID",
+      "type": "integer",
+      "constraints": { "required": true }
+    },
+    {
+      "name": "Date Start",
+      "type": "date",
+      "format": "%m/%d/%Y",
+      "constraints": { "required": true }
+    },
+    {
+      "name": "Date Stop",
+      "type": "date",
+      "format": "%m/%d/%Y",
+      "constraints": { "required": true }
+    },
+    {
+      "name": "Levels",
+      "type": "string",
+      "constraints": {
+        "enum": ["Beginner", "Intermediate", "Expert"]
+      }
+    },
+    {
+      "name": "Areas",
+      "type": "string"
+    }
+  ],
+  "primaryKey": ["Offering ID"],
+  "missingValues": ["", "NA", "null", "X"]
+}
