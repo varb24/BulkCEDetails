@@ -34,7 +34,7 @@
 #         fld = issue["field"] or "<row-level>"
 #         print(f"  • [{issue['type']}] {fld}: {issue['note']}")
 import frictionless
-from frictionless import validate, describe, extract
+from frictionless import validate, system
 import csv
 import json
 from collections import defaultdict
@@ -47,20 +47,12 @@ from google.api_core.client_logging import setup_logging
 setup_logging()
 
 def validate_csv(file_location, schema_location: str):
-    """Returns a frictionless Report object."""
-
-    # Run validation
-    report = validate(
-        file_location,
-        schema=schema_location,
-    )
-
-    if report.valid:
-        print("No validation errors found!")
-        return report
-
-    print(f"Found {len(report.tasks[0].errors)} errors")
-
+    # disable the "safe path" checks so absolute/../ paths are allowed
+    with system.use_context(trusted=True):
+        report = validate(
+            file_location,
+            schema=schema_location,
+        )
     return report
 
 
@@ -146,7 +138,23 @@ def extract_and_save_errors(result, rows_data: dict) -> dict:
     and all validation information.
     """
     # Group errors by row number
+    valid_rows = []
+    data_source = "./sample_data/sample_testing.csv"
+    filename = data_source[data_source.find("/",2) + 1: -4]
+    print(filename)
 
+    schema_location = "bulkCE_schema.json"
+    print(f'Starting data extraction')
+
+    validated_report = validate_csv(data_source, schema_location)
+    print(f'Validated report {validated_report}')
+    invalid_rows = extract_error_rows(validated_report)
+    print(f'Invalid rows {invalid_rows}')
+    rows_data = extract_row_data(data_source, invalid_rows)
+    print(f'Rows data {rows_data}')
+    combined_data = combine_error_and_data(invalid_rows, rows_data)
+    print(f'Combined data {combined_data}')
+    result = extract_and_save_errors(combined_data, rows_data)
     # Combine the errors with their row data
 
     # Save to JSON
@@ -154,58 +162,58 @@ def extract_and_save_errors(result, rows_data: dict) -> dict:
         print(f'Saving validation')
         json.dump(result, f, indent=2)
 
-    # Save to CSV for easier viewing
-    try:
-        with open('error_rows.csv', 'w', newline='') as f:
-            if not result:
-                print(f'failed to write error csv, result is empty.')
-                return result
-
-            # Get field names from first data row + error columns
-            data_rows = {k: v for k, v in result.items() if k != 'file_level' and v["data"]}
-            if not data_rows:
-                print("No row-specific errors to write to CSV")
-                return result
-
-            first_row = next(iter(data_rows.values()))
-            fieldnames = list(first_row["data"].keys())
-            fieldnames.extend(['Error_Types', 'Error_Messages', 'Error_Fields'])
-
-            writer = csv.DictWriter(f, fieldnames=fieldnames)
-            writer.writeheader()
-
-            for row_num, data in result.items():
-                if row_num == 'file_level' or not data['data']:
-                    continue  # Skip file-level errors in CSV output
-
-                row_data = data['data'].copy()  # Copy row data
-
-                # Add error information
-                error_types = "; ".join([e["type"] for e in data['errors']])
-                error_messages = "; ".join([e["message"] for e in data['errors']])
-                error_fields = "; ".join([str(e["field"]) for e in data['errors'] if e["field"]])
-
-                row_data['Error_Types'] = error_types
-                row_data['Error_Messages'] = error_messages
-                row_data['Error_Fields'] = error_fields
-
-                writer.writerow(row_data)
-    except Exception as e:
-        print(f"Error writing CSV: {e}")
-
-    print(f"Saved error data to validation_errors.json and error_rows.csv")
+    # # Save to CSV for easier viewing
+    # try:
+    #     with open('error_rows.csv', 'w', newline='') as f:
+    #         if not result:
+    #             print(f'failed to write error csv, result is empty.')
+    #             return result
+    #
+    #         # Get field names from first data row + error columns
+    #         data_rows = {k: v for k, v in result.items() if k != 'file_level' and v["data"]}
+    #         if not data_rows:
+    #             print("No row-specific errors to write to CSV")
+    #             return result
+    #
+    #         first_row = next(iter(data_rows.values()))
+    #         fieldnames = list(first_row["data"].keys())
+    #         fieldnames.extend(['Error_Types', 'Error_Messages', 'Error_Fields'])
+    #
+    #         writer = csv.DictWriter(f, fieldnames=fieldnames)
+    #         writer.writeheader()
+    #
+    #         for row_num, data in result.items():
+    #             if row_num == 'file_level' or not data['data']:
+    #                 continue  # Skip file-level errors in CSV output
+    #
+    #             row_data = data['data'].copy()  # Copy row data
+    #
+    #             # Add error information
+    #             error_types = "; ".join([e["type"] for e in data['errors']])
+    #             error_messages = "; ".join([e["message"] for e in data['errors']])
+    #             error_fields = "; ".join([str(e["field"]) for e in data['errors'] if e["field"]])
+    #
+    #             row_data['Error_Types'] = error_types
+    #             row_data['Error_Messages'] = error_messages
+    #             row_data['Error_Fields'] = error_fields
+    #
+    #             writer.writerow(row_data)
+    # except Exception as e:
+    #     print(f"Error writing CSV: {e}")
+    #
+    # print(f"Saved error data to validation_errors.json and error_rows.csv")
 
     # Print summary
-    print("\nError Summary:")
-    for row_num, data in result.items():
-        if row_num == 'file_level':
-            print(f"\nFile/Schema Level Errors:")
-        else:
-            print(f"\nRow {row_num}:")
-
-        for error in data["errors"]:
-            field = error["field"] if error["field"] else "<row-level>"
-            print(f"  • {field}: {error['type']} - {error['message']}")
+    # print("\nError Summary:")
+    # for row_num, data in result.items():
+    #     if row_num == 'file_level':
+    #         print(f"\nFile/Schema Level Errors:")
+    #     else:
+    #         print(f"\nRow {row_num}:")
+    #
+    #     for error in data["errors"]:
+    #         field = error["field"] if error["field"] else "<row-level>"
+    #         print(f"  • {field}: {error['type']} - {error['message']}")
 
     return result
 
