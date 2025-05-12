@@ -41,18 +41,13 @@
       "Approval Organization": "",
       "CE Broker State": "MI",
       "CE Hours/Contact Hours": "",
-      "Offering ID": "",
-      "Date Start": "",
+      "Offering ID": "12431434",
+      "Date Start": "1/1/2025",
       "Date Stop": "",
       "Levels": "Beginner",
       "Areas": "Ethics"
     },
     "errors": [
-      {
-        "type": "ConstraintError",
-        "message": "The cell \"\" in row at position \"4\" and field \"Offering ID\" at position \"4\" does not conform to a constraint: constraint \"required\" is \"True\"",
-        "field": "Offering ID"
-      },
       {
         "type": "ConstraintError",
         "message": "The cell \"\" in row at position \"4\" and field \"Approval Organization\" at position \"1\" does not conform to a constraint: constraint \"required\" is \"True\"",
@@ -65,17 +60,62 @@
       },
       {
         "type": "ConstraintError",
-        "message": "The cell \"\" in row at position \"4\" and field \"Date Start\" at position \"5\" does not conform to a constraint: constraint \"required\" is \"True\"",
+        "message": "The cell \"\" in row at position \"4\" and field \"Date Stop\" at position \"6\" does not conform to a constraint: constraint \"required\" is \"True\"",
+        "field": "Date Stop"
+      }
+    ],
+    "error_columns": [
+      {
+        "Approval Organization": ""
+      },
+      {
+        "CE Hours/Contact Hours": ""
+      },
+      {
+        "Date Stop": ""
+      }
+    ]
+  },
+  "5": {
+    "data": {
+      "Approval Organization": "",
+      "CE Broker State": "TX",
+      "CE Hours/Contact Hours": "",
+      "Offering ID": "",
+      "Date Start": "",
+      "Date Stop": "",
+      "Levels": "Intermediate",
+      "Areas": "Compliance"
+    },
+    "errors": [
+      {
+        "type": "ConstraintError",
+        "message": "The cell \"\" in row at position \"5\" and field \"Offering ID\" at position \"4\" does not conform to a constraint: constraint \"required\" is \"True\"",
+        "field": "Offering ID"
+      },
+      {
+        "type": "ConstraintError",
+        "message": "The cell \"\" in row at position \"5\" and field \"Approval Organization\" at position \"1\" does not conform to a constraint: constraint \"required\" is \"True\"",
+        "field": "Approval Organization"
+      },
+      {
+        "type": "ConstraintError",
+        "message": "The cell \"\" in row at position \"5\" and field \"CE Hours/Contact Hours\" at position \"3\" does not conform to a constraint: constraint \"required\" is \"True\"",
+        "field": "CE Hours/Contact Hours"
+      },
+      {
+        "type": "ConstraintError",
+        "message": "The cell \"\" in row at position \"5\" and field \"Date Start\" at position \"5\" does not conform to a constraint: constraint \"required\" is \"True\"",
         "field": "Date Start"
       },
       {
         "type": "ConstraintError",
-        "message": "The cell \"\" in row at position \"4\" and field \"Date Stop\" at position \"6\" does not conform to a constraint: constraint \"required\" is \"True\"",
+        "message": "The cell \"\" in row at position \"5\" and field \"Date Stop\" at position \"6\" does not conform to a constraint: constraint \"required\" is \"True\"",
         "field": "Date Stop"
       },
       {
         "type": "PrimaryKeyError",
-        "message": "Row at position \"4\" violates the primary key: cells composing the primary keys are all \"None\"",
+        "message": "Row at position \"5\" violates the primary key: cells composing the primary keys are all \"None\"",
         "field": null
       }
     ],
@@ -97,51 +137,64 @@
       }
     ]
   },
-  "5": {
-    "data": {
-      "Approval Organization": "Missing CE Hours",
-      "CE Broker State": "TX",
-      "CE Hours/Contact Hours": "",
-      "Offering ID": "3243",
-      "Date Start": "2/4/2025",
-      "Date Stop": "5/10/2025",
-      "Levels": "Intermediate",
-      "Areas": "Compliance"
-    },
-    "errors": [
-      {
-        "type": "ConstraintError",
-        "message": "The cell \"\" in row at position \"5\" and field \"CE Hours/Contact Hours\" at position \"3\" does not conform to a constraint: constraint \"required\" is \"True\"",
-        "field": "CE Hours/Contact Hours"
-      }
-    ],
-    "error_columns": [
-      {
-        "CE Hours/Contact Hours": ""
-      }
-    ]
-  },
   "6": {
     "data": {
-      "Approval Organization": "Missing Date Stop",
+      "Approval Organization": "",
       "CE Broker State": "TX",
-      "CE Hours/Contact Hours": "2",
-      "Offering ID": "234324",
-      "Date Start": "2/4/2025",
-      "Date Stop": "13/23/2025",
+      "CE Hours/Contact Hours": "",
+      "Offering ID": "",
+      "Date Start": "",
+      "Date Stop": "",
       "Levels": "Expert",
       "Areas": ""
     },
     "errors": [
       {
-        "type": "TypeError",
-        "message": "Type error in the cell \"13/23/2025\" in row \"6\" and field \"Date Stop\" at position \"6\": type is \"date/%m/%d/%Y\"",
+        "type": "ConstraintError",
+        "message": "The cell \"\" in row at position \"6\" and field \"Offering ID\" at position \"4\" does not conform to a constraint: constraint \"required\" is \"True\"",
+        "field": "Offering ID"
+      },
+      {
+        "type": "ConstraintError",
+        "message": "The cell \"\" in row at position \"6\" and field \"Approval Organization\" at position \"1\" does not conform to a constraint: constraint \"required\" is \"True\"",
+        "field": "Approval Organization"
+      },
+      {
+        "type": "ConstraintError",
+        "message": "The cell \"\" in row at position \"6\" and field \"CE Hours/Contact Hours\" at position \"3\" does not conform to a constraint: constraint \"required\" is \"True\"",
+        "field": "CE Hours/Contact Hours"
+      },
+      {
+        "type": "ConstraintError",
+        "message": "The cell \"\" in row at position \"6\" and field \"Date Start\" at position \"5\" does not conform to a constraint: constraint \"required\" is \"True\"",
+        "field": "Date Start"
+      },
+      {
+        "type": "ConstraintError",
+        "message": "The cell \"\" in row at position \"6\" and field \"Date Stop\" at position \"6\" does not conform to a constraint: constraint \"required\" is \"True\"",
         "field": "Date Stop"
+      },
+      {
+        "type": "PrimaryKeyError",
+        "message": "Row at position \"6\" violates the primary key: cells composing the primary keys are all \"None\"",
+        "field": null
       }
     ],
     "error_columns": [
       {
-        "Date Stop": "13/23/2025"
+        "Offering ID": ""
+      },
+      {
+        "Approval Organization": ""
+      },
+      {
+        "CE Hours/Contact Hours": ""
+      },
+      {
+        "Date Start": ""
+      },
+      {
+        "Date Stop": ""
       }
     ]
   },
@@ -149,23 +202,39 @@
     "data": {
       "Approval Organization": "Missing Date Start",
       "CE Broker State": "TX",
-      "CE Hours/Contact Hours": "3",
+      "CE Hours/Contact Hours": "",
       "Offering ID": "23434",
       "Date Start": "X",
-      "Date Stop": "12/24/1999",
+      "Date Stop": "13/23/2025",
       "Levels": "",
       "Areas": ""
     },
     "errors": [
       {
         "type": "ConstraintError",
+        "message": "The cell \"\" in row at position \"7\" and field \"CE Hours/Contact Hours\" at position \"3\" does not conform to a constraint: constraint \"required\" is \"True\"",
+        "field": "CE Hours/Contact Hours"
+      },
+      {
+        "type": "ConstraintError",
         "message": "The cell \"X\" in row at position \"7\" and field \"Date Start\" at position \"5\" does not conform to a constraint: constraint \"required\" is \"True\"",
         "field": "Date Start"
+      },
+      {
+        "type": "TypeError",
+        "message": "Type error in the cell \"13/23/2025\" in row \"7\" and field \"Date Stop\" at position \"6\": type is \"date/%m/%d/%Y\"",
+        "field": "Date Stop"
       }
     ],
     "error_columns": [
       {
+        "CE Hours/Contact Hours": ""
+      },
+      {
         "Date Start": "X"
+      },
+      {
+        "Date Stop": "13/23/2025"
       }
     ]
   },
@@ -175,21 +244,29 @@
       "CE Broker State": "TX",
       "CE Hours/Contact Hours": "4",
       "Offering ID": "49000",
-      "Date Start": "2/4/2025",
-      "Date Stop": "X",
+      "Date Start": "X",
+      "Date Stop": "13/23/2025",
       "Levels": "",
       "Areas": ""
     },
     "errors": [
       {
         "type": "ConstraintError",
-        "message": "The cell \"X\" in row at position \"8\" and field \"Date Stop\" at position \"6\" does not conform to a constraint: constraint \"required\" is \"True\"",
+        "message": "The cell \"X\" in row at position \"8\" and field \"Date Start\" at position \"5\" does not conform to a constraint: constraint \"required\" is \"True\"",
+        "field": "Date Start"
+      },
+      {
+        "type": "TypeError",
+        "message": "Type error in the cell \"13/23/2025\" in row \"8\" and field \"Date Stop\" at position \"6\": type is \"date/%m/%d/%Y\"",
         "field": "Date Stop"
       }
     ],
     "error_columns": [
       {
-        "Date Stop": "X"
+        "Date Start": "X"
+      },
+      {
+        "Date Stop": "13/23/2025"
       }
     ]
   },
@@ -250,10 +327,10 @@
     "data": {
       "Approval Organization": "",
       "CE Broker State": "",
-      "CE Hours/Contact Hours": "",
-      "Offering ID": "",
-      "Date Start": "",
-      "Date Stop": "",
+      "CE Hours/Contact Hours": "X",
+      "Offering ID": "X",
+      "Date Start": "X",
+      "Date Stop": "X",
       "Levels": "",
       "Areas": ""
     },
